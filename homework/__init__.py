@@ -9,7 +9,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
-from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.base import BaseEstimator, ClassifierMixin
 
 
@@ -67,14 +67,14 @@ def create_estimator():
     )
 
     # Clasificador base optimizado para velocidad y precisión
-    base_classifier = GradientBoostingClassifier(
-        n_estimators=300,
-        max_depth=10,
-        learning_rate=0.1,
-        subsample=0.8,
-        random_state=42,
+    # RandomForest es mucho más rápido que GradientBoosting
+    base_classifier = RandomForestClassifier(
+        n_estimators=200,
+        max_depth=20,
         min_samples_split=2,
-        min_samples_leaf=1
+        min_samples_leaf=1,
+        random_state=42,
+        n_jobs=-1  # Usar todos los cores disponibles
     )
 
     # Pipeline completo
