@@ -66,13 +66,15 @@ def create_estimator():
         ]
     )
 
-    # Clasificador base con alta capacidad
+    # Clasificador base optimizado para velocidad y precisión
     base_classifier = GradientBoostingClassifier(
-        n_estimators=500,
+        n_estimators=300,
         max_depth=10,
         learning_rate=0.1,
         subsample=0.8,
-        random_state=42
+        random_state=42,
+        min_samples_split=2,
+        min_samples_leaf=1
     )
 
     # Pipeline completo
